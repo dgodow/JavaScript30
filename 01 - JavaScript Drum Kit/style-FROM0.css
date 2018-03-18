@@ -1,0 +1,44 @@
+html {
+  font-size: 10px;
+  background-image: url(http://i.imgur.com/b9r5sEL.jpg);
+  background-size: cover;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+#container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.key {
+  width: 7em;
+  border: .4em solid black;
+  border-radius: .5em;
+  /* background-color: black; */
+  background: rgba(0,0,0,0.4);
+  margin: 1em;
+  padding: 0.75em;
+  text-align: center;
+  font-size: 1.2em;
+  color: white;
+  text-shadow: 0 0 .5rem black;
+}
+
+kbd {
+  font-size: 3.5em;
+  display: block;
+}
+
+.descriptor {
+  display: block;
+  font-size: 1em;
+  color: #ffc600;
+  text-transform: uppercase;
+}
