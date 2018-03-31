@@ -14,46 +14,78 @@
 
   <body>
     <div id="container">
-      <div class="key" id="clap">
+      <div class="key" data-sound="clap" id="a">
         <kbd>A</kbd>
         <span class="descriptor">clap</span>
       </div>
-      <div class="key" id="hihat">
+      <div class="key" data-sound="hihat" id="s">
         <kbd>S</kbd>
         <span class="descriptor">hihat</span>
       </div>
-      <div class="key" id="kick">
+      <div class="key" data-sound="kick" id="d">
         <kbd>D</kbd>
         <span class="descriptor">kick</span>
       </div>
-      <div class="key" id="openhat">
+      <div class="key" data-sound="openhat" id="f">
         <kbd>F</kbd>
         <span class="descriptor">openhat</span>
       </div>
-      <div class="key" id="boom">
+      <div class="key" data-sound="boom" id="g">
         <kbd>G</kbd>
         <span class="descriptor">boom</span>
       </div>
-      <div class="key" id="ride">
+      <div class="key" data-sound="ride" id="h">
         <kbd>H</kbd>
         <span class="descriptor">ride</span>
       </div>
-      <div class="key" id="snare">
+      <div class="key" data-sound="snare" id="j">
         <kbd>J</kbd>
         <span class="descriptor">snare</span>
       </div>
-      <div class="key" id="tom">
+      <div class="key" data-sound="tom" id="k">
         <kbd>K</kbd>
         <span class="descriptor">tom</span>
       </div>
-      <div class="key" id="tink">
+      <div class="key" data-sound="tink" id="l">
         <kbd>L</kbd>
         <span class="descriptor">tink</span>
       </div>
     </div>
 
+  <audio data-sound="boom" src="sounds/boom.wav"></audio>
+  <audio data-sound="clap" src="sounds/clap.wav"></audio>
+  <audio data-sound="hihat" src="sounds/hihat.wav"></audio>
+  <audio data-sound="kick" src="sounds/kick.wav"></audio>
+  <audio data-sound="openhat" src="sounds/openhat.wav"></audio>
+  <audio data-sound="ride" src="sounds/ride.wav"></audio>
+  <audio data-sound="snare" src="sounds/snare.wav"></audio>
+  <audio data-sound="tink" src="sounds/tink.wav"></audio>
+  <audio data-sound="tom" src="sounds/tom.wav"></audio>
+
   <script>
-    
+
+    function triggerDrum (event) {
+      const key = document.querySelector(`#${event.key}`);
+      if (key) {
+        const drumType = key.getAttribute("data-sound");
+        const soundFile = document.querySelector(`[src="sounds/${drumType}.wav"]`);
+        soundFile.currentTime = 0;
+        soundFile.play();
+
+        key.classList.add("playing");
+      }
+    }
+
+    function removeTrigger (event) {
+      if (event.propertyName !== "transform") return;
+      event.target.classList.remove("playing");
+    }
+
+    const keys = Array.from(document.querySelectorAll(".key"));
+    keys.forEach(key => key.addEventListener('transitionend', removeTrigger));
+    document.body.addEventListener("keydown", triggerDrum);
+
+
   </script>
   </body>
 </html>
