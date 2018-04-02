@@ -1,5 +1,6 @@
 :root {
   --bg-color: #193549;
+  --color: #ffc600;
 }
 
 html {
@@ -9,17 +10,32 @@ html {
 
 body {
   height: 100%;
+  font-family: 'helvetica neue', sans-serif;
+  font-weight: 100;
+  font-size: 2.3em;
 }
 
 .header {
   color: #ffffff;
-  font-family: 'helvetica neue', sans-serif;
-  font-weight: 100;
-  font-size: 2.3em;
   text-align: center;
   margin: 60px 0 60px 0;
 }
 
 .settings {
   display: flex;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 50px;
+}
+
+.settings-set {
+  margin: 10px;
+}
+
+#color-picker {
+  width: 10em;
+}
+
+#var-header {
+  color: var(--color);
 }
