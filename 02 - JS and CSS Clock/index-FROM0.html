@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <title>JS + CSS Clock (From 0)</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+  <div class="clock">
+    <div class="hand" id="second"></div>
+    <div class="hand" id="minute"></div>
+    <div class="hand" id="hour"></div>
+  </div>
+
+  <script>
+
+      const date = new Date();
+  
+      const secondHand = document.getElementById("second");
+      let sec = date.getSeconds();
+      secondHand.style.transform = `rotate(${(sec * 6)-90}deg)`;
+  
+      const minuteHand = document.getElementById("minute");
+      let min = date.getMinutes();
+      minuteHand.style.transform = `rotate(${(min * 6)-90}deg)`;
+  
+      const hourHand = document.getElementById("hour");
+      let hr = date.getHours() % 12;
+      hourHand.style.transform = `rotate(${(hr * 30)-90}deg)`;
+  
+      let counter = 0;
+  
+      window.setInterval(() => {
+        console.log('hi');
+        counter++;
+        
+        sec++;
+        if (counter % 60 == 0) min++;
+        if (counter % 3600 == 0) hr++;
+
+        secondHand.style.transform = `rotate(${(sec * 6)-90}deg)`;
+        minuteHand.style.transform = `rotate(${(min * 6)-90}deg)`;
+        hourHand.style.transform = `rotate(${(hr * 30)-90}deg)`;
+
+      }, 1000);
+  
+    </script>
+</body>
+
+</html>
