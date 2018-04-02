@@ -1,0 +1,25 @@
+:root {
+  --bg-color: #193549;
+}
+
+html {
+  height: 100vh;
+  background-color: var(--bg-color);
+}
+
+body {
+  height: 100%;
+}
+
+.header {
+  color: #ffffff;
+  font-family: 'helvetica neue', sans-serif;
+  font-weight: 100;
+  font-size: 2.3em;
+  text-align: center;
+  margin: 60px 0 60px 0;
+}
+
+.settings {
+  display: flex;
+}
