@@ -1,6 +1,7 @@
 :root {
   --bg-color: #193549;
   --color: #ffc600;
+  --width: 10px;
 }
 
 html {
@@ -29,7 +30,7 @@ body {
 }
 
 .settings-set {
-  margin: 10px;
+  margin: 0.1em;
 }
 
 #color-picker {
@@ -38,4 +39,15 @@ body {
 
 #var-header {
   color: var(--color);
+}
+
+.photo {
+  height: 30%;
+  border-color: var(--color);
+  border-width: var(--width);
+}
+
+.photo img {
+  display: block;
+  margin: 30px auto;
 }
