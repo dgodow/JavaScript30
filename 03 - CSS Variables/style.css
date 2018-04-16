@@ -1,7 +1,8 @@
 :root {
   --bg-color: #193549;
   --color: #ffc600;
-  --width: 10px;
+  --spacing: 20px;
+  --blur: 0px;
 }
 
 html {
@@ -29,10 +30,6 @@ body {
   font-size: 50px;
 }
 
-.settings-set {
-  margin: 0.1em;
-}
-
 #color-picker {
   width: 10em;
 }
@@ -43,11 +40,13 @@ body {
 
 .photo {
   height: 30%;
-  border-color: var(--color);
-  border-width: var(--width);
 }
 
 .photo img {
   display: block;
   margin: 30px auto;
+  border-style: solid;
+  border-color: var(--color);
+  border-width: var(--spacing);
+  filter: blur(var(--blur));
 }

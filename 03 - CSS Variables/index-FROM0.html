@@ -4,7 +4,7 @@
 <head>
   <title>Scoped CSS Variables and JS</title>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="style.css"/> 
+  <link rel="stylesheet" href="style.css"/>
 </head>
 
 <body>
@@ -17,11 +17,11 @@
     <div class="settings">
       <div class="settings-set" id="spacing">
         <span>Spacing:</span>
-        <input type="range" min="1" max="100" value="50" id="spacing-range">
+        <input type="range" min="0" max="100" value="10" id="spacing-range">
       </div>
       <div class="settings-set" id="blur">
         <span>Blur:</span>
-        <input type="range" min="1" max="100" value="50" id="blur-range">
+        <input type="range" min="0" max="100" value="0" id="blur-range">
       </div>
       <div class="settings-set" id="base-color">
         <span>Base Color</span>
@@ -30,9 +30,37 @@
     </div>
 
     <div class="photo">
-      <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
+      <img src="https://images.unsplash.com/photo-1519766277046-4d701c174ab2?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f4dd8b103887a976b2c5c05b91a8b52a&auto=format&fit=crop&w=2397&q=80" height="400" width="600">
     </div>
   </div>
+
+  <script>
+    const spacingSlider = document.getElementById("spacing-range");
+    const blurSlider = document.getElementById("blur-range");
+    const colorRange = document.getElementById("color-picker");
+
+    spacingSlider.addEventListener("input", () => {
+      const newValue = parseInt(event.target.value) * 2;
+      document.documentElement.style.setProperty("--spacing", `${newValue}px`);
+    })
+
+    blurSlider.addEventListener("input", () => {
+      const newValue = (parseInt(event.target.value))/2;
+      document.documentElement.style.setProperty("--blur", `${newValue}px`);
+    })
+
+    colorRange.addEventListener("input", () => {
+      document.documentElement.style.setProperty("--color", event.target.value);
+    })
+
+    // const nodes = document.querySelectorAll("#spacing-range, #blur-range, #color-picker");
+
+    // function handleUpdate () {
+    //   console.log(this);
+    // };
+
+    // nodes.forEach(node => node.addEventListener("input", handleUpdate));
+  </script>
 
 </body>
 </html>
