@@ -1,0 +1,23 @@
+body {
+  background-color: #ffc600;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+#form-entry {
+  margin: 12vh auto;
+  display: flex;
+  justify-content: center;
+}
+
+#form-text-input {
+  border: 10px solid #F7F7F7;
+  width: 25%;
+  height: 10vh;
+  background-color: white;
+  text-align: center;
+  font-family: 'helvetica neue';
+  font-size: 40px;
+  font-weight: 200;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.19);
+}
