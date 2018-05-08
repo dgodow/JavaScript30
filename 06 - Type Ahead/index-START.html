@@ -8,7 +8,7 @@
 <body>
 
   <form class="search-form">
-    <input type="text" id="search" placeholder="City or State">
+    <input type="text" class="search" placeholder="City or State">
     <ul class="suggestions">
       <li>Filter for a city</li>
       <li>or a state</li>
@@ -22,10 +22,20 @@ request.open("GET", endpoint, true);
 request.onreadystatechange = (e) => {
   if (request.readyState === 4 && request.status === 200) {
     const data = JSON.parse(request.response);
-    const inputElement = document.getElementById("search");
+    const inputElement = document.querySelector(".search");
     inputElement.onkeyup = (event) => {
-      let matches = data.filter(entry => entry.city.indexOf(event.target.value) !== -1);
+      const matches = data.filter(entry => entry.city.indexOf(event.target.value) !== -1);
+      let list = document.createElement("UL").setAttribute("class", "suggestions");
 
+      matches.forEach(match => {
+        const newEntry = document.createElement("LI");
+
+        const placeText = document.createElement("SPAN").innerHTML = `${match.city}, ${match.state}`;
+        newEntry.appendChild(document.createTextNode(placeText));
+
+        const population = document.createElement("SPAN").innerHTML = `${match.population}`;
+        console.log(newEntry);
+      })
     }
   }
 }
