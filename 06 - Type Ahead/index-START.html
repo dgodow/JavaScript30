@@ -15,33 +15,64 @@
     </ul>
   </form>
 <script>
+
 const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
 const request = new XMLHttpRequest();
+const inputElement = document.querySelector(".search");
+const searchForm = document.querySelector(".search-form");
 
 request.open("GET", endpoint, true);
 request.onreadystatechange = (e) => {
   if (request.readyState === 4 && request.status === 200) {
     const data = JSON.parse(request.response);
-    const inputElement = document.querySelector(".search");
+
     inputElement.onkeyup = (event) => {
+      if (searchForm.hasChildNodes()) {
+        const oldForm = document.querySelector(".suggestions");
+        oldForm.remove();
+      }
+
       const matches = data.filter(entry => entry.city.indexOf(event.target.value) !== -1);
-      let list = document.createElement("UL").setAttribute("class", "suggestions");
+      let list = document.createElement("ul");
+      list.setAttribute("class", "suggestions");
 
       matches.forEach(match => {
-        const newEntry = document.createElement("LI");
+        const newEntry = document.createElement("li");
+        const place = createListicle("place", {city: match.city, state: match.state});
+        newEntry.appendChild(place);
 
-        const placeText = document.createElement("SPAN").innerHTML = `${match.city}, ${match.state}`;
-        newEntry.appendChild(document.createTextNode(placeText));
+        const population = document.createElement("span");
+        const populationText = document.createTextNode(`${match.population}`);
+        population.appendChild(populationText);
+        population.setAttribute("class", "population");
+        newEntry.appendChild(population);
 
-        const population = document.createElement("SPAN").innerHTML = `${match.population}`;
-        console.log(newEntry);
+        list.appendChild(newEntry);
       })
+
+      searchForm.appendChild(list);
     }
   }
 }
 
 request.send();
 
+function createListicle (type = "", details = {}) {
+
+  const element = document.createElement("span");
+  let elementText;
+
+  if (type == "place") {
+    elementText = document.createTextNode(`${details.city}, ${details.state}`);
+  } else if (type == "population") {
+    elementText = document.createTextNode(`${details.population}`);
+  }
+
+  element.appendChild(elementText);
+  element.setAttribute("class", "name");
+
+  return element;
+}
 
 </script>
   </body>
