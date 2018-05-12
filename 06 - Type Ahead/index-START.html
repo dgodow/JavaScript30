@@ -39,12 +39,8 @@ request.onreadystatechange = (e) => {
       matches.forEach(match => {
         const newEntry = document.createElement("li");
         const place = createListicle("place", {city: match.city, state: match.state});
+        const population = createListicle("population", {population: match.population});
         newEntry.appendChild(place);
-
-        const population = document.createElement("span");
-        const populationText = document.createTextNode(`${match.population}`);
-        population.appendChild(populationText);
-        population.setAttribute("class", "population");
         newEntry.appendChild(population);
 
         list.appendChild(newEntry);
@@ -65,13 +61,27 @@ function createListicle (type = "", details = {}) {
   if (type == "place") {
     elementText = document.createTextNode(`${details.city}, ${details.state}`);
   } else if (type == "population") {
-    elementText = document.createTextNode(`${details.population}`);
+    const convertedPopulation = addCommaSeparators(details.population);
+    elementText = document.createTextNode(`${convertedPopulation}`);
+  } else {
+    throw new Error("Invalid listicle type");
   }
 
   element.appendChild(elementText);
-  element.setAttribute("class", "name");
+
+  if (type == "place") {
+    element.setAttribute("class", "name");
+  } else if (type == "population") {
+    element.setAttribute("class", "population");
+  } else {
+    throw new Error("Invalid listicle type");
+  }
 
   return element;
+}
+
+function addCommaSeparators (number) {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 </script>
