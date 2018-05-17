@@ -99,6 +99,29 @@
   </div>
 
 <script>
+  const checkboxes = Array.from(document.getElementsByClassName('item'));
+  const initialFocus = checkboxes[checkboxes.length-1].setAttribute("id", "focus");
+
+  checkboxes.forEach(element => {
+    element.addEventListener('input', setFocus);
+  })
+
+  function shiftPressed (event) {
+    if (event.key == "Shift") return true;
+    else return false;
+  }
+
+  function setFocus (event) {
+    const currentFocus = document.getElementById("focus");
+    currentFocus.removeAttribute("id", "focus");
+
+    const newFocus = event.target;
+    newFocus.setAttribute("id", "focus");
+  }
+
+  function selectMultiple () {
+
+  }
 </script>
 </body>
 </html>
