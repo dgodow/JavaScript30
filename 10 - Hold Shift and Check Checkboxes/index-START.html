@@ -99,29 +99,17 @@
   </div>
 
 <script>
-  const checkboxes = Array.from(document.getElementsByClassName('item'));
-  const initialFocus = checkboxes[checkboxes.length-1].setAttribute("id", "focus");
+  const checkboxes = Array.from(document.getElementsByClassName("item"));
+  checkboxes.forEach(checkbox => checkbox.addEventListener("mouseup", check));
 
-  checkboxes.forEach(element => {
-    element.addEventListener('input', setFocus);
-  })
+  let lastChecked = checkboxes.length-1;
 
-  function shiftPressed (event) {
-    if (event.key == "Shift") return true;
-    else return false;
-  }
+  function check (e) {
+    if (e.shiftKey) {
 
-  function setFocus (event) {
-    const currentFocus = document.getElementById("focus");
-    currentFocus.removeAttribute("id", "focus");
+    }
+  };
 
-    const newFocus = event.target;
-    newFocus.setAttribute("id", "focus");
-  }
-
-  function selectMultiple () {
-
-  }
 </script>
 </body>
 </html>
