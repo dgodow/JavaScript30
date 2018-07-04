@@ -7,6 +7,22 @@
 </head>
 <body>
 <script>
+
+  const keySequence = [];
+  const secretCode = "wesbos";
+
+  document.addEventListener("keyup", function (e) {
+    console.log(e.key);
+
+    if (keySequence.length === 6) keySequence.shift();
+    keySequence.push(e.key);
+
+    if (keySequence.join('').includes(secretCode)) {
+      cornify_add();
+    };
+
+    console.log(keySequence);
+  })
 </script>
 </body>
 </html>
